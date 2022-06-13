@@ -1,6 +1,6 @@
 package group.securitystudy.feature.service;
 
-import group.securitystudy.feature.model.User;
+import group.securitystudy.feature.model.Users;
 import group.securitystudy.feature.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,7 +31,7 @@ public class UserService implements UserDetailsService {
      * @throws UsernameNotFoundException
      */
     @Override
-    public User loadUserByUsername(String email) throws UsernameNotFoundException {
+    public Users loadUserByUsername(String email) throws UsernameNotFoundException {
         //null이면 UsernameNotFoundException 예외를 발생시키고, null이 아니면 UserInfo를 반환하게 처리
         return repository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException((email)));
@@ -43,7 +43,7 @@ public class UserService implements UserDetailsService {
      * @return 저장된 user 객체
      */
 
-    public User save(User user){
+    public Users save(Users user){
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         //회원 정보로 넘어오는 비밀번호는 반드시 암호화된 상태로 db에 저장되어야 한다
         //즉, 사용자로부터 입력받은 패스워드를 BCrypt로 암호화한 후에 회원을 저장

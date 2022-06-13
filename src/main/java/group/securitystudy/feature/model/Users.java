@@ -21,7 +21,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User implements UserDetails {
+public class Users implements UserDetails {
 
     @Id
     @Column
@@ -42,7 +42,7 @@ public class User implements UserDetails {
     private String auth;
 
     @Builder
-    public User(String email, String password, String auth) {
+    public Users(String email, String password, String auth) {
         this.email = email;
         this.password = password;
         this.auth = auth;
