@@ -51,15 +51,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter { //WebSecur
         ;
     }
 
-//    @Override
-//    //유저가 로그인 할 때, 필요한 정보를 가져오는 메서드
-//    public void configure(AuthenticationManagerBuilder auth) throws Exception{
-//
-//        // userService에서는 UserDetailsService를 implements해서 loadUserByUsername() 구현해야함 (서비스 참고) -
-//        //그래야 유저 로그인 시 유저 네임(로그인 아이디)에 맞는 정보를 loadUserByUserName을 통해 가져올 수 있음
-//        //!!!!!!!!! 즉 userSerive의 loadUserByUserName은 로그인 요청 시의 유저 네임에 맞는 유저 정보를 가져오는 서비스
-//        auth.userDetailsService(userService)
-//                .passwordEncoder(new BCryptPasswordEncoder());
-//    }
+    @Override
+    //유저가 로그인 처리를 해주는 메서드
+    public void configure(AuthenticationManagerBuilder auth) throws Exception{
+
+        // userService에서는 UserDetailsService를 implements해서 loadUserByUsername() 구현해야함 (서비스 참고) -
+        //그래야 유저 로그인 시 유저 네임(로그인 아이디)에 맞는 정보를 loadUserByUserName을 통해 가져올 수 있음
+        //!!!!!!!!! 즉 userSerive의 loadUserByUserName은 로그인 요청 시의 유저 네임에 맞는 유저 정보를 가져오는 서비스
+        
+        //이렇게만 해주면 로그인이 자동으로 처리된다고 일단 이해
+        auth.userDetailsService(userService)
+                .passwordEncoder(new BCryptPasswordEncoder());
+    }
 
 }
